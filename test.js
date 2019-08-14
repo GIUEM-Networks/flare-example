@@ -25,7 +25,7 @@ async function init() {
   // 初始化 lib
   await new Promise(resolve => graphics.initialize(() => {
     resolve()
-  }, './lib'))
+  }, 'https://cdn.jsdelivr.net/gh/GIUEM-Networks/flare-example/lib/'))
 
   // 加载 flare
   actor = await load('./Bob (Minion) (1).flr')
