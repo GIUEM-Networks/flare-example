@@ -68,6 +68,9 @@ async function init() {
   canvas.addEventListener('touchend', () => mouseIn = false)
   canvas.addEventListener('touchcancel', () => mouseIn = false)
 
+  // disable scroll
+  document.body.addEventListener('touchstart', function(e){ e.preventDefault(); });
+
   // canvas.addEventListener('mousemove', (e) => {
   //   mouseIn = true
   //   caretGlobal[0] = e.clientX
@@ -210,7 +213,11 @@ function render() {
           }}>Pause</button>
         <button class="btn btn-link" onClick=${() => {
           globalSpeed = 1
-          animations.forEach(o => o.play = false)
+          animations.forEach(o => {
+            o.play = false
+            o.animationInstance.time = 0
+            o.animationInstance.apply(actorInstance, 1)
+          })
         }}>Reset</button>
       </div>
     </div>
